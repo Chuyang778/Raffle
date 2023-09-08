@@ -1,0 +1,51 @@
+server:
+  port: 84
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: abcdef
+    url: jdbc:mysql://101.43.11.65/lottery?useUnicode=true&serverTimezone=Asia/Shanghai
+
+
+mybatis:
+  mapper-locations: classpath:/mybatis/mapper/*.xml
+  config-location:  classpath:/mybatis/config/mybatis-config.xml
+
+mini-db-router:
+  jdbc:
+    datasource:
+      dbCount: 2
+      tbCount: 4
+      default: db00
+      routerKey: uId
+      list: db01,db02
+      db00:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://101.43.11.65:3306/lottery?useUnicode=true&serverTimezone=Asia/Shanghai
+        username: root
+        password: abcdef
+      db01:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://101.43.11.65:3306/lottery_01?useUnicode=true&serverTimezone=Asia/Shanghai
+        username: root
+        password: abcdef
+      db02:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://101.43.11.65:3306/lottery_02?useUnicode=true&serverTimezone=Asia/Shanghai
+        username: root
+        password: abcdef
+dubbo:
+  application:
+    name: Lottery
+    version: 1.0.0
+    parameters:
+      unicast: false
+  registry:
+    address: multicast://224.5.6.7:1234
+  protocol:
+    name: dubbo
+    port: 20880
+  scan:
+    base-packages: cn.itedus.lottery.rpc
