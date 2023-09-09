@@ -1,6 +1,7 @@
 package cn.itedus.lottery.domain.activity.repository;
 
 import cn.itedus.lottery.domain.activity.model.vo.DrawOrderVO;
+import cn.itedus.lottery.domain.activity.model.vo.UserTakeActivityVO;
 
 import java.util.Date;
 
@@ -37,4 +38,6 @@ public interface IUserTakeActivityRepository {
     int lockTackActivity(String uId, Long activityId, Long takeId);
 
     void saveUserStrategyExport(DrawOrderVO drawOrder);
+
+    UserTakeActivityVO queryNoConsumedTakeActivityOrder(Long activityId, String uId);
 }

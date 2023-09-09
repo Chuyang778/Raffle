@@ -1,6 +1,7 @@
-package java.cn.itedus.lottery.application.process.impl;
+package cn.itedus.lottery.application.process.impl;
 
 
+import cn.itedus.lottery.application.process.res.DrawProcessResult;
 import cn.itedus.lottery.common.Constants;
 import cn.itedus.lottery.domain.activity.model.req.PartakeReq;
 import cn.itedus.lottery.domain.activity.model.res.PartakeResult;
@@ -14,9 +15,9 @@ import cn.itedus.lottery.domain.support.ids.IdGenerator;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.cn.itedus.lottery.application.process.IActivityProcess;
-import java.cn.itedus.lottery.application.process.req.DrawProcessReq;
-import java.cn.itedus.lottery.application.process.res.DrawProcessResult;
+import cn.itedus.lottery.application.process.IActivityProcess;
+import cn.itedus.lottery.application.process.req.DrawProcessReq;
+
 import java.util.Map;
 
 /**

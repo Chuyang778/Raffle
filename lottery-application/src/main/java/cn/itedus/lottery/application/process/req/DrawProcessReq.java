@@ -1,4 +1,4 @@
-package java.cn.itedus.lottery.application.process.req;
+package cn.itedus.lottery.application.process.req;
 
 /**
  * @description: 抽奖请求

@@ -8,7 +8,7 @@ import cn.itedus.lottery.domain.activity.repository.IActivityRepository;
 import cn.itedus.lottery.infrastructure.dao.*;
 import cn.itedus.lottery.infrastructure.po.*;
 import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.List;
  * @author ChuYang
  * @version 1.0
  */
-@Component
+@Repository
 public class ActivityRepository implements IActivityRepository {
     @Resource
     private IActivityDao activityDao;

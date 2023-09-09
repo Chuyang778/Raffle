@@ -9,13 +9,11 @@ import cn.itedus.lottery.domain.activity.model.vo.ActivityBillVO;
 import cn.itedus.lottery.domain.activity.model.vo.DrawOrderVO;
 import cn.itedus.lottery.domain.activity.repository.IUserTakeActivityRepository;
 import cn.itedus.lottery.domain.activity.service.partake.BaseActivityPartake;
-import cn.itedus.lottery.domain.activity.service.partake.IActivityPartake;
 import cn.itedus.lottery.domain.support.ids.IdGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.annotation.Resource;
@@ -41,11 +39,6 @@ public class ActivityPartakeImpl extends BaseActivityPartake {
     @Resource
     private IDBRouterStrategy dbRouter;
 
-
-    @Override
-    public PartakeResult doPartake(PartakeReq req) {
-        return null;
-    }
 
     @Override
     public Result recordDrawOrder(DrawOrderVO drawOrder) {

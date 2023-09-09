@@ -1,16 +1,21 @@
 package cn.itedus.lottery.infrastructure.repository;
 
 import cn.itedus.lottery.domain.activity.model.vo.DrawOrderVO;
+import cn.itedus.lottery.domain.activity.model.vo.UserTakeActivityVO;
 import cn.itedus.lottery.domain.activity.repository.IUserTakeActivityRepository;
+import cn.itedus.lottery.infrastructure.dao.IUserStrategyExportDao;
 import cn.itedus.lottery.infrastructure.dao.IUserTakeActivityCountDao;
 import cn.itedus.lottery.infrastructure.dao.IUserTakeActivityDao;
+import cn.itedus.lottery.infrastructure.po.UserStrategyExport;
 import cn.itedus.lottery.infrastructure.po.UserTakeActivity;
 import cn.itedus.lottery.infrastructure.po.UserTakeActivityCount;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Method;
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * @author ChuYang
@@ -23,6 +28,9 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
 
     @Resource
     private IUserTakeActivityCountDao userTakeActivityCountDao;
+
+    @Resource
+    private IUserStrategyExportDao userStrategyExportDao;
 
     @Override
     public int subtractionLeftCount(Long activityId, String activityName, Integer takeCount, Integer userTakeLeftCount, String uId, Date partakeDate) throws Exception {
@@ -66,7 +74,40 @@ public class UserTakeActivityRepository implements IUserTakeActivityRepository {
 
     @Override
     public void saveUserStrategyExport(DrawOrderVO drawOrder) {
+        UserStrategyExport userStrategyExport = new UserStrategyExport();
+        userStrategyExport.setuId(drawOrder.getuId());
+        userStrategyExport.setActivityId(drawOrder.getActivityId());
+        userStrategyExport.setOrderId(drawOrder.getOrderId());
+        userStrategyExport.setStrategyId(drawOrder.getStrategyId());
+        userStrategyExport.setStrategyMode(drawOrder.getStrategyMode());
+        userStrategyExport.setGrantType(drawOrder.getGrantType());
+        userStrategyExport.setGrantDate(drawOrder.getGrantDate());
+        userStrategyExport.setGrantState(drawOrder.getGrantState());
+        userStrategyExport.setAwardId(drawOrder.getAwardId());
+        userStrategyExport.setAwardType(drawOrder.getAwardType());
+        userStrategyExport.setAwardName(drawOrder.getAwardName());
+        userStrategyExport.setAwardContent(drawOrder.getAwardContent());
+        userStrategyExport.setUuid(String.valueOf(drawOrder.getOrderId()));
 
+        userStrategyExportDao.insert(userStrategyExport);
+
+    }
+
+    @Override
+    public UserTakeActivityVO queryNoConsumedTakeActivityOrder(Long activityId, String uId) {
+        UserTakeActivity userTakeActivity = new UserTakeActivity();
+        userTakeActivity.setActivityId(activityId);
+        userTakeActivity.setuId(uId);
+        UserTakeActivity noConsumedTakeActivityOrder = userTakeActivityDao.queryNoConsumedTakeActivityOrder(userTakeActivity);
+        if (noConsumedTakeActivityOrder == null) {
+            return null;
+        }
+        UserTakeActivityVO userTakeActivityVO = new UserTakeActivityVO();
+        userTakeActivityVO.setActivityId(noConsumedTakeActivityOrder.getActivityId());
+        userTakeActivityVO.setTakeId(noConsumedTakeActivityOrder.getTakeId());
+        userTakeActivityVO.setState(noConsumedTakeActivityOrder.getState());
+        userTakeActivityVO.setStrategyId(noConsumedTakeActivityOrder.getStrategyId());
+        return userTakeActivityVO;
     }
 
     private int createUserTakeActivityCount(String uId, Long activityId, Integer takeCount) throws Exception {

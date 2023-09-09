@@ -1,4 +1,4 @@
-package java.cn.itedus.lottery.application.process.res;
+package cn.itedus.lottery.application.process.res;
 
 import cn.itedus.lottery.common.Result;
 import cn.itedus.lottery.domain.strategy.model.vo.DrawAwardInfo;

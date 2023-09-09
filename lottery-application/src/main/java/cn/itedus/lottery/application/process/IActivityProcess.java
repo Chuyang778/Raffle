@@ -1,8 +1,8 @@
-package java.cn.itedus.lottery.application.process;
+package cn.itedus.lottery.application.process;
 
 
-import java.cn.itedus.lottery.application.process.req.DrawProcessReq;
-import java.cn.itedus.lottery.application.process.res.DrawProcessResult;
+import cn.itedus.lottery.application.process.req.DrawProcessReq;
+import cn.itedus.lottery.application.process.res.DrawProcessResult;
 
 /**
  * @description: 活动抽奖流程编排接口

@@ -34,6 +34,32 @@ public class UserTakeActivity {
     /**
      * 活动领取时间
      */
+    /**
+     * 策略ID
+     */
+    private Long strategyId;
+
+    public Long getStrategyId() {
+        return strategyId;
+    }
+
+    public void setStrategyId(Long strategyId) {
+        this.strategyId = strategyId;
+    }
+
+    /**
+     * 状态
+     */
+    private Integer state;
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
     private Date takeDate;
     /**
      * 领取次数
